@@ -1,0 +1,7 @@
+C:\Users\admin\source\repos\ProjectD\bin\Debug\ProjectD.exe.config
+C:\Users\admin\source\repos\ProjectD\bin\Debug\ProjectD.exe
+C:\Users\admin\source\repos\ProjectD\bin\Debug\ProjectD.pdb
+C:\Users\admin\source\repos\ProjectD\obj\Debug\ProjectD.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\ProjectD\obj\Debug\ProjectD.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\ProjectD\obj\Debug\ProjectD.exe
+C:\Users\admin\source\repos\ProjectD\obj\Debug\ProjectD.pdb
