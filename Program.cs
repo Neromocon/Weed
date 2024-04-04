@@ -1,80 +1,112 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectD
+namespace @switch
 {
     internal class Program
     {
-        static void Main()
+        static int InputInt(string s)
         {
-            Console.Write("문자를 입력하세요: ");
-            string plainText = Console.ReadLine();
+            Console.Write(s + ":");
 
-            StringBuilder sb = new StringBuilder();
-            foreach (char ch in plainText)
-            {
-                char newchar = ch;
-                if ((ch >= 'A' && ch <='Z') || (ch >='a' && ch<='z')) 
-                {
-                    newchar = (char)(ch + 3);
-                    if ((Char.IsUpper(ch) && newchar >'Z') || (Char.IsLower(ch) && newchar > 'z'))
-                    {
-                        newchar = (char)(newchar - 26);
-                    }
-                }
-                sb.Append(newchar);
-            }
-            Console.WriteLine(sb.ToString());
-            
+            return int.Parse(Console.ReadLine());
         }
-        static void Main2() //시저의 암호
-        {
-            Console.Write("문자를 입력하세요: ");
-            string plainText = Console.ReadLine();
 
-            StringBuilder sb = new StringBuilder(); //StringBuilder는 여러 문자열을 효율적으로 결합하는데 사용하는 클래스.
-            foreach (char ch in plainText) //foreach는 반복 가능한 자료형의 순환을 쉽게 할 수 있도록 도와준다.
-            {                             // foreach(변수 유형 in 반복할 자료)
-                char newchar = ch;
-
-                if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
-                {
-                    newchar = (char)(ch + 3);//newchar라는 변수에 ch라는 문자변수를 추가할 때 3만큼 더하라 그리고 (char)를 붙임으로서 문자 유형으로 변환하라.
-                    if ((Char.IsUpper(ch) && newchar > 'Z') || (Char.IsLower(ch) && newchar <= 'z'))
-                        //Char.IsUpper(ch)는 ()안의 변수(여기서는 ch)가 대문자인지를 확인한다. 반대로 Char.IsLower(ch)는 소문자인지를 확인한다.
-                        //만약 ch가 Z보다 크고 또는 z보다 작을 때 둘 중의 하나라도 참 이면 알파벳 범위(해당 알파벳이 할당 된 유니코드)를 넘어간다.
-                        //그래서 (char)newchar-26을 해 줌으로서 알파벳 범위로 되돌려 올바르게 출력할 수 있게 한다.
-                    {
-                        newchar = (char)(newchar - 26);
-                    }
-                }
-                sb.Append(newchar);
-            }
-            Console.WriteLine(sb.ToString());
-        
-        }
-        static void Main3()//대문자,소문자 변환
+        static int InputInt(string s, int start, int end)    //입력값의 범위를 지정  = 나 이 범위를 제외한 값은 필요 없음!
         {
-            string s = "Hello World";
-            string result = string.Empty;
-            for (int i=0;i < s.Length ;i++ ) 
+            string msg = s + "(" + start + "~" + end + ")";
+
+            // 정상 범위
+            //(v >= start && v <= end)
+            //(start <= v && v<= end)
+            // 정상 범위가 아님
+            //(v < start) || (v > end)
+            //!(v >= start) && (v <= end)
+            //!(start <= v && v<= end)
+
+            int v = 0;
+            //while (true)
+            //{
+            //    v = InputInt(msg);
+            //    if (v >= start && v <= end)
+            //        break;
+            //    Console.WriteLine("다시 입력해주세요.");
+            //}
+            //------------------------- 타입 1
+            //bool first = true;
+            //do  // 잘못된 조건의 입력을 전제로 함.
+            //{
+            //    if (!first)
+            //        Console.WriteLine("다시 입력해주세요.");
+
+            //    first = false;
+            //    v = InputInt(msg);
+            //} while (!(v >= start && v <= end));
+            //----------------------------- 타입2
+
+            //bool retry = false;
+            //do
+            //{
+            //    if (retry)
+            //        Console.WriteLine("다시 입력해주세요.");
+            //    retry = true;
+            //    v = InputInt(msg);
+            //} while (!(v >= start && v <= end));
+            //----------------------------타입3
+
+            bool retry = false;
+            do
             {
-                char t = s[i];
-                if (char.IsUpper(t))
-                {
-                    t = char.ToLower(t);
-                }
-                else if (char.IsLower(t))
-                {
-                    t = char.ToUpper(t);
-                }
-                result +=t;
+                if (retry)
+                    Console.WriteLine("다시 입력해주세요.");
+                retry = true;
+                v = InputInt(msg);
+            } while (v < start || v > end);
+
+
+            return v;
+        }
+
+        static void Main(string[] args)
+        {
+            int w = InputInt("입력", 1, 7);
+
+            string s = "";
+
+            switch (w)
+            {
+                case 1:
+                    s = "월요일";
+                    break;  // 해당 case에 대한 더 이상의 문장은 없음.
+                case 2:
+                    s = "화요일";
+                    break;
+                case 3:
+                    s = "수요일";
+                    break;
+                case 4:
+                    s = "목요일";
+                    break;
+                case 5:
+                    s = "금요일";
+                    break;
+                case 6:
+                    s = "토요일";
+                    break;
+                case 7:
+                    s = "일요일";
+                    break;
+
+                default:   // 위의 case에 해당안될 때
+                    s = "입력값을 다시 확인하세요.";
+                    break;
             }
-            Console.WriteLine(result);
+
+            Console.WriteLine(s);
         }
     }
 }
