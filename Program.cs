@@ -1,112 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Card.Card;
 
-namespace @switch
+namespace Card
 {
     internal class Program
     {
-        static int InputInt(string s)
-        {
-            Console.Write(s + ":");
+        static Random random = new Random();
 
-            return int.Parse(Console.ReadLine());
+        static int Dice() 
+        {
+            int r = random.Next();  // 0~~
+            int d = 1 + (r % 6); // 1~6: 6개
+            return d;
         }
 
-        static int InputInt(string s, int start, int end)    //입력값의 범위를 지정  = 나 이 범위를 제외한 값은 필요 없음!
+        static bool Yut()
         {
-            string msg = s + "(" + start + "~" + end + ")";
+            int r = random.Next();  
+            return  (r % 2) == 0; // 짝,홀
+            
+        }
 
-            // 정상 범위
-            //(v >= start && v <= end)
-            //(start <= v && v<= end)
-            // 정상 범위가 아님
-            //(v < start) || (v > end)
-            //!(v >= start) && (v <= end)
-            //!(start <= v && v<= end)
+        static string[] Yutnori = {"모", "도", "개", "걸", "윳" };
 
-            int v = 0;
-            //while (true)
-            //{
-            //    v = InputInt(msg);
-            //    if (v >= start && v <= end)
-            //        break;
-            //    Console.WriteLine("다시 입력해주세요.");
-            //}
-            //------------------------- 타입 1
-            //bool first = true;
-            //do  // 잘못된 조건의 입력을 전제로 함.
-            //{
-            //    if (!first)
-            //        Console.WriteLine("다시 입력해주세요.");
+        static void throwYut()
+        {
+            int c = 0;
 
-            //    first = false;
-            //    v = InputInt(msg);
-            //} while (!(v >= start && v <= end));
-            //----------------------------- 타입2
-
-            //bool retry = false;
-            //do
-            //{
-            //    if (retry)
-            //        Console.WriteLine("다시 입력해주세요.");
-            //    retry = true;
-            //    v = InputInt(msg);
-            //} while (!(v >= start && v <= end));
-            //----------------------------타입3
-
-            bool retry = false;
-            do
+            for (int i = 0; i < 4; i++) 
             {
-                if (retry)
-                    Console.WriteLine("다시 입력해주세요.");
-                retry = true;
-                v = InputInt(msg);
-            } while (v < start || v > end);
+                bool y = Yut();
+                Console.Write(y ? "X" : "O");
+                if (y) 
+                {
+                    c++;
+                }
+            }
 
-
-            return v;
+            Console.WriteLine(Yutnori[c]);
         }
+
 
         static void Main(string[] args)
         {
-            int w = InputInt("입력", 1, 7);
 
-            string s = "";
+            Deck deck = new Deck();
 
-            switch (w)
-            {
-                case 1:
-                    s = "월요일";
-                    break;  // 해당 case에 대한 더 이상의 문장은 없음.
-                case 2:
-                    s = "화요일";
-                    break;
-                case 3:
-                    s = "수요일";
-                    break;
-                case 4:
-                    s = "목요일";
-                    break;
-                case 5:
-                    s = "금요일";
-                    break;
-                case 6:
-                    s = "토요일";
-                    break;
-                case 7:
-                    s = "일요일";
-                    break;
+            deck.Shuffle();
 
-                default:   // 위의 case에 해당안될 때
-                    s = "입력값을 다시 확인하세요.";
-                    break;
-            }
+            Console.WriteLine(deck);
 
-            Console.WriteLine(s);
+            Random random = new Random();
+
+
+            int d1 = Dice();
+            int d2 = Dice();
+            Console.WriteLine($"{d1}, {d2}");
+            throwYut();
+
+
         }
     }
 }
