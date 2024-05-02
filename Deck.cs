@@ -3,32 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Card.Card;
+using System.Windows.Forms;
+using static CardWin.Card;
 
-namespace Card
+namespace CardWin
 {
+    //: Button
     internal class Deck : Cards
     {
-        public Deck()
+        public Deck(Control.ControlCollection controls):base(controls ,"deck", true)
         {
 
-
+            Card c;
             for (Symbol s = Symbol.Heart; s <= Symbol.Spade; s++)
             {
 
                 for (int i = 1; i <= 13; i++)
                 {
-                    PutIn(new Card(s, i));
+                    PutIn(c = new Card(s, i));
+                    
+                    controls.Add(c);
+                    //c.Location = new System.Drawing.Point(40 * i, 60 * (int)s);
+                    c.Visible = false;
+
                 }
 
 
 
             }
 
-            PutIn(new Card(Symbol.BlackJoker));
-            PutIn(new Card(Symbol.ColorJoker));
-
+            PutIn(c = new Card(Symbol.BlackJoker));
+            controls.Add(c);
+            c.Location = new System.Drawing.Point(1, 60 * 4);
+            c.Visible = false;
+            PutIn(c = new Card(Symbol.ColorJoker));
+            controls.Add(c);
+            c.Location = new System.Drawing.Point(2, 60 * 4);
+            c.Visible = false;
         }
+
+        
+
 
     }
 }

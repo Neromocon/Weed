@@ -1,0 +1,10 @@
+C:\Users\admin\source\repos\CardWin_WF\bin\Debug\CardWin_WF.exe.config
+C:\Users\admin\source\repos\CardWin_WF\bin\Debug\CardWin_WF.exe
+C:\Users\admin\source\repos\CardWin_WF\bin\Debug\CardWin_WF.pdb
+C:\Users\admin\source\repos\CardWin_WF\obj\Debug\CardWin_WF.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\CardWin_WF\obj\Debug\CardWin_WF.Properties.Resources.resources
+C:\Users\admin\source\repos\CardWin_WF\obj\Debug\CardWin_WF.csproj.GenerateResource.cache
+C:\Users\admin\source\repos\CardWin_WF\obj\Debug\CardWin_WF.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\CardWin_WF\obj\Debug\CardWin_WF.exe
+C:\Users\admin\source\repos\CardWin_WF\obj\Debug\CardWin_WF.pdb
+C:\Users\admin\source\repos\CardWin_WF\obj\Debug\CardWin_WF.Board.resources
