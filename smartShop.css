@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.5em;
+    margin: 0;
+}
+.heading {
+    font-family: 'GmarketSansMedium';
+    font-size: 70px;
+    text-align: center;
+    font-weight: normal;
+}
+.heading span {
+    color: deeppink;
+}
+.items-inner {
+    width: 1350px;
+    margin: auto;
+    /* border: 1px solid red; */
+}
+.items {
+    display: flex;
+    gap: 10px;
+    counter-reset: number;
+}
+.item {
+    flex: 1;
+    position: relative;
+}
+.item::before {
+    content: counter(number);
+    counter-increment: number;
+    width: 45px; height: 45px;
+    background-color: gray;
+    position: absolute;
+    z-index: 10;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 0 0 5px 0;
+}
+/* .item:nth-child(1)::before{content: '1';}
+.item:nth-child(2)::before{content: '2';}
+.item:nth-child(3)::before{content: '3';}
+.item:nth-child(4)::before{content: '4';}
+.item:nth-child(5)::before{content: '5';} */
+.item:hover::before {
+    background-color: crimson;
+}
+.photo {
+    position: relative;
+    height: 400px;
+}
+.photo img {
+    width: 100%;
+    position: absolute;
+}
+.photo img:first-child {
+    z-index: 1;
+}
+.photo:hover img:first-child {
+    opacity: 0;
+}
+.detail {
+    position: relative;
+}
+.detail span {
+    display: block;
+}
+.detail .price b {
+    color: crimson;
+    margin-right: 10px;
+}
+.detail .name {
+    font-weight: 500;
+}
+.detail .count {
+    color: #777;
+}
+.detail .like {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.detail .like::before {
+    /* content: '\f08a';
+    font-family: fontawesome; */
+    content: '\2661';
+    font-size: 18px;
+    color: #999;
+}
+.detail .like.active::before {
+    /* content: '\f004 '; */
+    content: '\2764';
+    color: crimson;
+}

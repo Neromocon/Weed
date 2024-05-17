@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css filter</title>
+    <style>
+        ul{
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        ul li {
+            border:  2px solid #000;
+        }
+        ul li:nth-child(1) {}
+        ul li:nth-child(2) {filter: blur(3px);}
+        ul li:nth-child(3) {filter: brightness(150%);}
+        ul li:nth-child(4) {filter: contrast(150%);}
+        ul li:nth-child(5) {filter: grayscale(70%);}
+        ul li:nth-child(6) {filter: invert(100%);}
+        ul li:nth-child(7) {filter: brightness(0) saturate(100%) invert(88%) sepia(29%) saturate(752%) hue-rotate(77deg) brightness(100%) contrast(103%);}
+    </style>
+</head>
+<body>
+    <ul>
+        <li><img src="https://picsum.photos/200/300" alt=""></li>
+        <li><img src="https://picsum.photos/200/300" alt=""></li>
+        <li><img src="https://picsum.photos/200/300" alt=""></li>
+        <li><img src="https://picsum.photos/200/300" alt=""></li>
+        <li><img src="https://picsum.photos/200/300" alt=""></li>
+        <li><img src="https://picsum.photos/200/300" alt=""></li>
+        <li><img src="img/house.jpg" alt=""></li>
+    </ul>
+</body>
+</html>

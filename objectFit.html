@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object-fit, object-position</title>
+    <style>
+        .f1 {
+            border: 3px solid #000;
+            width: 400px; height: 400px;
+            background: url(img/woman.jpg) no-repeat left center / cover;
+            margin-bottom: 20px;
+        }
+        .f2 {
+            border: 3px solid red;
+            width: 400px; height: 400px;
+        }
+        .f2 img {
+            width: inherit; height: inherit;
+            object-fit: cover;
+            object-position: left;
+        }
+        .f3 img {
+            width: 400px; height: 400px;
+            object-fit: cover;
+            /* object-position: left; */
+        }
+    </style>
+</head>
+<body>
+    <div class="f1"></div>
+    <div class="f2">
+        <img src="img/woman.jpg" alt="">
+    </div>
+    <div class="f3">
+        <img src="img/front.jpg" alt="">
+    </div>
+</body>
+</html>
