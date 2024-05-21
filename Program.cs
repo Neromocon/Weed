@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mine
+namespace Part7_WindowsControl
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace Mine
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Borad());
+            Application.Run(new Form1());
         }
     }
 }
