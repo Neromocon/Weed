@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+// 닷넷의 스레드 관련 기능을 제공해 주는 System.Threading 네임 스페이스를 추가.
+using System.Windows.Forms.VisualStyles;
 
-namespace Part7_WindowsControl
+namespace ThreadInfo
 {
     public partial class Form1 : Form
     {
@@ -18,78 +20,25 @@ namespace Part7_WindowsControl
             InitializeComponent();
         }
 
-        private void BtnEvent_Click(object sender, EventArgs e)
+        private void BtnThreadInfo_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("버튼을 클릭하였습니다.");
-            string strOrder = "";
-            if(ckbSoon.Checked) 
-            {
-                strOrder += ckbSoon.Text + "\n";
-            }
-            if (ckbPasta.Checked)
-            {
-                strOrder += ckbPasta.Text + "\n";
-            }
-            if (ckbSteak.Checked)
-            {
-                strOrder += ckbSteak.Text + "\n";
-            }
-            if (ckbTang.Checked)
-            {
-                strOrder += ckbTang.Text + "\n";
-            }
-            lblOrder.Text = strOrder + "메뉴를 요청하였습니다.";
-
-            if (radioAgree.Checked) 
-            {
-                MessageBox.Show("개인정보 수집에 동의 하셨습니다.");
-            }
-            else
-            {
-                MessageBox.Show("개인정보 수집에 동의하지 않으셨습니다.");
-            }
+            Thread th = Thread.CurrentThread;
+            // Thread 클래스를 이용하여 객체를 선언하되, CurrentThread를 통해 현재 주 스레드 객체를
+            // 얻어온다.
+            th.Name = "threadInfo";
+            // 스레드의 이름 설정.
+            tbThreadInfo.Text += "HashCode :" + th.GetHashCode() + "\r\n";
+            // 스레드의 해시 코드를 얻어와서 출력한다. 해시 코드란 객체를 식별할 수 있는 하나의 
+            // 정수값을 말한다.
+            tbThreadInfo.Text += "스레드 이름 :" + th.Name + "\r\n";
+            // 스레드의 이름을 출력.
+            tbThreadInfo.Text += "스레드 우선순위 :" + th.Priority + "\r\n";
+            // 스레드의 우선순위를 출력한다. 스레드가 현재 스케줄러에 있는 큐보다 우선순위가 높은
+            // 큐에 들어가면 스케줄러는 우선순위가 높은 큐로 이동하여 스레드를 수행한다.
+            // 우선순위에는 크게 실시간, 최상, 보통, 낮음 등이 있다. 디폴트는 보통 이다.
+            tbThreadInfo.Text += "스레드 상태 :" + th.ThreadState;
+            // 현재 스레드의 상태를 알려 주는 일기 전용 속성이다. 현재 스레드가 동작하고 있는지 멈추었는지
+            // 등의 상태 정보를 알려준다.
         }
-
-        private void BtnReceipt_click(object sender, EventArgs e)
-        {
-            string strText = textBox1.Text + "\n라고 요구 사항이 접수되었습니다.";
-            MessageBox.Show(strText);
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void CbPay_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lbArea.Items.Clear();
-            if(cbPay.SelectedIndex == 0)
-            {
-                lbArea.Items.Add("일시불");
-                lbArea.Items.Add("3개월 할부");
-                lbArea.Items.Add("6개월 할부");
-            }
-            else if (cbPay.SelectedIndex == 1)
-            {
-                lbArea.Items.Add("하루은행");
-                lbArea.Items.Add("신용은행");
-                lbArea.Items.Add("국물은행");
-            }
-            else if (cbPay.SelectedIndex == 2)
-            {
-                lbArea.Items.Add("N포인트");
-                lbArea.Items.Add("주유포인트");
-                lbArea.Items.Add("레이저포인트");
-            }
-
-        }
-
-        private void BtnPay_Click(object sender, EventArgs e)
-        {
-            string strText = cbPay.Text + "(으)로" + lbArea.Text + "결제방법을" + "\n선택하셨습니다.";
-            MessageBox.Show(strText);
-        }
-
-        
     }
 }
