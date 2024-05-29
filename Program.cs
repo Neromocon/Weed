@@ -1,56 +1,143 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
 
-namespace ThreadExit
+namespace Traffic_light
 {
+    class CSignal
+    {
+        const bool TRUE = true;
+        const bool FALSE = false;
+        const bool ON = true;
+        const bool OFF = false;
+
+        void SetColor(ConsoleColor forground, ConsoleColor background)
+        {
+            Console.ForegroundColor = forground;
+            Console.BackgroundColor = background;
+        }
+        public CSignal() 
+        {
+            Console.WriteLine("**********************");
+            Console.WriteLine("프로그램을 시작합니다.");
+            Console.WriteLine("**********************");
+        }
+
+        void Lamp(ConsoleColor color, bool onoff)
+        {
+            if(onoff ==  ON)
+            {
+                SetColor(color, color);
+            }
+            else
+            {
+                SetColor(ConsoleColor.White, ConsoleColor.Gray);
+            }
+            Console.WriteLine("          ");
+            Console.WriteLine("          ");
+            Console.WriteLine("          ");
+            Console.WriteLine("          ");
+            Console.WriteLine("          ");
+            SetColor(ConsoleColor.White, ConsoleColor.Black);
+        }
+
+        void RedLampOn()
+        {
+            Console.Clear();
+            Lamp(ConsoleColor.Red, ON);
+            Lamp(ConsoleColor.Yellow, OFF); 
+            Lamp(ConsoleColor.Green, OFF);
+            Console.WriteLine("이것은 신호등입니다.");
+        }
+        void YellowLampOn()
+        {
+            Console.Clear();
+            Lamp(ConsoleColor.Red, OFF);
+            Lamp(ConsoleColor.Yellow, ON);
+            Lamp(ConsoleColor.Green, OFF);
+            Console.WriteLine("이것은 신호등입니다.");
+        }
+        void GreenLamp()
+        {
+            Console.Clear();
+            Lamp(ConsoleColor.Red, OFF);
+            Lamp(ConsoleColor.Yellow, OFF);
+            Lamp(ConsoleColor.Green, ON);
+            Console.WriteLine("이것은 신호등입니다.");
+        }
+        int nStep;
+        int nCount;
+        public bool loop()
+        {
+            switch (nStep)
+            {
+                case 0: // 초기화 시킴
+                    nStep = 100;
+                    nCount = 0;
+                    RedLampOn();
+                    break; // Red On
+                case 100:               
+                    if(nCount < 5)
+                    {
+                        nCount++;
+                    }                
+                    else
+                    {
+                        nCount = 6;
+                        nStep = 200;
+                        YellowLampOn();
+                    }
+                    break;
+                
+                case 200:  // Yellow On                   
+                    if(nCount < 5)
+                    {
+                        nCount++;
+                    }
+                    else
+                    {
+                        nCount = 0;
+                        nStep = 300;
+                        GreenLamp();
+                    }
+                    break;
+                    
+                case 300:
+                   
+                    if( nCount < 3)
+                    {
+                        nCount++;
+                    }
+                    
+                    else
+                    {
+                        nCount = 0;
+                        nStep = 0;
+                    }
+                    break;
+                default:
+                    nStep = 0;
+                    break;
+                
+            }
+            Thread.Sleep(1000);
+            return true;
+        }
+        //public bool loop()
+        //{
+        //    return true;
+        //}
+    }
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("주 스레드 시작 : " + Thread.
-                CurrentThread.GetHashCode());
-            ThreadStart ts = new ThreadStart(ThreadFunction);
-            Thread thd = new Thread(ts);
-            thd.Start();
-            Console.WriteLine("스레드 시작" + thd.GetHashCode());
-            Console.WriteLine("주 스레드 종료");
-            Thread.Sleep(100);
-            // 스레드 시작 후 Sleep() 메소드를 통해 0.1초 동안 대기.
-            //thd.Abort();
-            // Abort()메소드로 동작 중인 스레드를 강제로 종료.
-            thd.Join();
-            // Join()메소드로 스레드의 모든 작업이 완료된 후 종료.
-        }
-        public static void ThreadFunction()
-        {
-            try
-            {
-                int count = 0;
-                while(count < 1000)
-                {
-                    count++;
-                    Console.WriteLine("스레드 동작 중..." + count);
-                }
-                Console.WriteLine("정상 종료");
-            }
-            catch(ThreadAbortException e) 
-            {
-                Console.WriteLine("Abort 예외 발생 : " + e);
-                // 스레드에서 발생한 예외 중 Abort()메소드에 의해 강제 종료가 되면
-                // ThreadAbortException 예외가 발생하는데, catch문에서 예외 발생 전달인자를 받아 출력.
-            }
-            finally
-            {
-                Console.WriteLine("finally!!");
-            }
-            // try~catch~finally로 스레드 강제 종료 시 예외 처리를 함.
-            Console.WriteLine("스렏 식별 : " + Thread.
-                CurrentThread.GetHashCode());
-            // 현재 어떠한 스레드가 동작하고 있는지 스레드를 식별할 해시 코드를 출력.
+            CSignal sig = new CSignal();
+            while (sig.loop()) ;
         }
     }
 }

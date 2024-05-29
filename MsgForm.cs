@@ -8,19 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BarcodeReaderTest
+namespace MessageAlarm
 {
-    public partial class Form1 : Form
+    public partial class MsgForm : Form
     {
-        public Form1()
+        public MsgForm()
         {
             InitializeComponent();
-            serialPort1.Open();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            serialPort1.WriteLine("<T/>");
         }
     }
 }
