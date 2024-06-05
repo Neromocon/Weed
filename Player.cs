@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BlueMarble
+namespace BlueMarbleEx2
 {
     public class Player : Button
     {
@@ -42,16 +42,15 @@ namespace BlueMarble
 
         public int Give(int amount) 
         {
-            if(money < amount)
+            if (money < amount)
                 amount = money;
 
             money -= amount;
             return amount;
         }
-
         public void Take(int amount)
         {
-            money += amount;
+            money += amount;            
         }
     }
 }

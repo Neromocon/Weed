@@ -4,40 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlueMarble
+namespace BlueMarbleEx2
 {
-    public class RealEstate
+    internal class RealEstate
     {
-        public enum eKind { Hotel, Condo, Building };
-        public readonly eKind kind;
-        public readonly int cost;
-        public readonly int pay;
-        private  int number = 0;
-
-
-        public RealEstate(eKind kind, int cost, int pay) 
-        {
-            this.kind = kind;
-            this.cost = cost;
-            this.pay = pay;
-        }
-
-        public int GetNumber()
-        {
-            return number;
-        }
-
-        public int GetTotalPay()
-        {
-            return number * pay;
-        }
-        public int GetTotalCost() // 환불?
-        {
-            return number * cost;
-        }
-        public int Build()
-        {
-            return ++ number;
-        }
     }
 }
