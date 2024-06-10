@@ -1,111 +1,266 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _24._06._05
+namespace _24._06._10
 {
     internal class Program
     {
-        //정수 리스트 num_list가 주어질 때, 마지막 원소가 그전 원소보다 크면 마지막 원소에서 그전
-        //원소를 뺀 값을 마지막 원소가 그전 원소보다 크지 않다면 마지막 원소를 두 배한 값을 추가하여
-        //return하도록 solution 함수를 완성해주세요.
-        // num_list             result
-        // [2, 1, 6]       [2, 1, 6, 5]
-        // [5, 2, 1, 7, 5] [5, 2, 1, 7, 5, 10]
-        /*public int[] solution(int[] num_list)
-        {
+        //public int solution(int num1, int num2)
+        //{
+        //    int answer = 0;
+        //    if (num1 == num2)
+        //    {
+        //        answer = 1;
+        //        return answer;
+        //    }
 
-            int result = 0;
-            int[] answer = new int[] {2, 1, 6 };
-            List<int> list = answer.ToList();
-            int[] answer_list = new int[answer.Length+1];
-                        
-            
-            if (answer[2] > answer[1])
-                result = answer[2] - answer[1];
+        //    if (num1 != num2)
+        //    {
+        //        answer = -1;
+        //        return  answer;
+        //    }
 
-            else
-                result = answer[2] * 2;
-            
-            list.Add(result);
 
-            return list.ToArray();
+        //    return answer;
+        //}
 
-        }
-        */
+        //public double solution(int[] numbers)
+        //{
+        //    int[] num = {1,2,3,4,5,6,7,8,9,10};
+        //    double answer = 0;
+        //    int sum = 0;
+        //    foreach (int i in numbers) 
+        //    {
+        //        sum += num[i];
+        //    }
+        //    answer = sum / num.Length;
+        //    return answer;
+        //}
 
-        /*
-         * 문자열 my_string과 이차원 정수 배열 queries가 매개변수로 주어집니다. 
-         * queries의 원소는 [s, e] 형태로, my_string의 인덱스 s부터 인덱스 e까지를 
-         * 뒤집으라는 의미입니다.
-         * my_string에 queries의 명령을 순서대로 처리한 후의 문자열을 return 하는 solution 함수를 작성해 주세요.
-         */
+        //public int[] solution(int n)
+        //{
+        //    int i = 10;
+        //    int[] array = new int[i];
+        //    foreach (int x in array) 
+        //    {
+        //        if(x % 2 == 1)
+        //        {
+        //            array[i] += x;
+        //        }
+        //    }
 
-        /*
-        public string solution(string my_string, int[,] queries)
-        {
-            string my_string2 = "rermgorpsam";
-            int[,] queries2 = new int[4, 2] 
-            {
-                {2, 3},
-                {0, 7},
-                {5, 9},
-                {6, 10}
-            };
+        //    int[] answer = new int[] { };
+        //    Console.WriteLine(array);
+        //    return answer;
+        //}
 
-            char[] answer = my_string2.ToCharArray();
-            // 문자열중 몇 개를 임의로 순서를 바꾸기 때문에 문자 타입으로 변경해준다.
-            // ToCharArray()이 해당 문자열 배열을 문자 배열로 바꾸는 메소드.
 
-            for (int i = 0;i <= queries.GetLength(0); i++)           
-            // 2차원 배열이기 때문에 GetLength()로 구한다. 
-            // queries.GetLength(0)에서 0을 넣은 이유는 이차원 배열의 첫 번째 차원의 길이를 구하기 위함.
-            {
-                int start = queries[i, 0];
-                // 현재 queries의 처음 원소를 구함
-                int end = queries[i, 1] - queries[i, 0] + 1;
-                // 현재 queries의 끝 원소를 가져와 범위의 길이를 계산.
-                Array.Reverse(answer, start, end);
-                // Array.Reverse() 메서드를 이용해서 지정된 범위를 뒤집음.
-                // ex) Array.Reverse(answer, start, end)
-                // answer 배열의 start(시작부분)에서 end(끝부분)까지
-            }
-
-            return new string(answer);
-        }
-        */
-
-        /*
-         문자열 배열 intStrs와 정수 k, s, l가 주어집니다. intStrs의 원소는 숫자로 이루어져 있습니다.
-        배열 intStrs의 각 원소마다 s번 인덱스에서 시작하는 길이 l짜리 부분 문자열을 잘라내
-        정수로 변환합니다. 
-        이때 변환한 정수값이 k보다 큰 값들을 담은 배열을 return 하는 solution 함수를 완성해 주세요.
-         */
-
-        public int[] solution(string[] intStrs, int k, int s, int l)
-        {
-            string[] intStrs2 = { "0123456789", "987654321", "9999999999" };
-            int x = 50000; // == k
-            int y = 5; // == s
-            int z = 5; // == l
-            char[] charStrs = intStrs2.ToArray();
-
-            for (int i = 0; i < intStrs2.Length; i++)
-            {
-
-            }
-            //intStrs2[intStrs2[y]]
-
-            int[] answer = new int[] { };
-            return answer;
-        }
 
         static void Main(string[] args)
         {
-            
+            //int[] numbers = { 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99 };
+            //int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //double answer = 0;
+            //double sum = 0;
+            //for (int i = 0; i < numbers.Length; i++) 
+            //{
+            //    sum += numbers[i];
+            //}
+            //answer = sum / numbers.Length;
+            //Console.WriteLine(answer);
+
+            //int angle = 70;
+            //int angle2 = 91;
+            //int angle3 = 180;
+            //int answer = 0;
+
+            //if(angle <90)
+            //{
+            //    answer = 1;
+            //}
+            //else if(angle == 90)
+            //{
+            //    answer = 2;
+            //}
+            //else if(angle > 90 || angle <180)
+            //{
+            //    answer = 3;
+            //}
+            //else if(angle == 180)
+            //{
+            //    answer = 4;
+            //}
+            //Console.WriteLine(answer);
+
+            //int n = 10;
+            //int answer = 0;
+            //int sum = 0;
+            //for (int i = 0; i <= n; i++) 
+            //{                
+            //    if (i % 2 == 0) 
+            //    {
+            //        sum += i;
+            //    }
+            //}
+            //answer = sum;
+            //Console.WriteLine(answer);
+
+            //int num1 = 3;
+            //int num2 = 2;
+            //double number = (double)num1 / num2;
+            //int answer = (int)(number * 1000);
+
+            //Console.WriteLine(answer);
+
+            //int[] array = { 1, 1, 2, 3, 4, 5 };
+            ////int[] array = { 0, 2, 3, 4 };
+            //int n = 1;
+            //int answer = 0;
+
+            //foreach (int num in array) 
+            //{
+
+            //    if (num == n)
+            //    {
+            //        answer++;
+
+            //    }
+            //}
+
+            //Console.WriteLine(answer);
+
+            //int[] array = { 149, 180, 192, 170 };
+            //int[] array = { 180, 120, 140 };
+            //int height = 190;
+            //int max = 0;
+            //int answer = 0;
+            //foreach (int ki in array)
+            //{
+            //    if (height < ki)
+            //    {                 
+            //        answer++;
+            //    }
+            //}
+
+            //Console.WriteLine(answer);
+
+            //int[] array = { 1, 2, 7, 10, 11 };
+            //int[] array = { 9, -1, 0 };
+            //int length = array.Length;
+            //int answer = 0;
+            //Array.Sort(array);
+            //if (length % 2 == 1) 
+            //{
+            //    answer = array[length / 2];
+            //}
+            //Console.WriteLine(answer);
+
+
+            //int i = 10;
+            //int[] array = new int[i];
+
+            //for (int j = 0; j < array.Length; j++) 
+            //{
+            //    if (j % 2 == 1)
+            //    {
+            //        array[j] = j;
+            //        Console.Write(j + "");
+            //    }
+            //}
+
+
+            //for (int j = 0; j < array.Length; j++)
+            //{
+            //    if (j % 2 == 1)
+            //    {
+            //        array[j] = j;
+            //        Console.Write(j + "");
+            //    }
+            //}
+            //foreach (int x in array)
+            //{
+            //    if (x % 2 == 1)
+            //    {
+            //        int[] answer = new int[array.Length];
+            //    }
+            //    //Console.Write(x + " ");
+            //}
+
+            //int n = 15;
+            //double num = 0;
+            //int answer = 0;
+
+            //num = (double)n / 7;
+            //answer = (int)Math.Ceiling(num);
+            //Console.WriteLine(answer);
+
+
+            //int price = 150000;
+            //int price = 580000;
+            //double discount = 0;
+            //int answer = 0;
+
+            //if (price >= 0 && price < 100000)
+            //{
+            //    answer = price;
+            //}
+            //if (price >= 100000 && price < 300000)
+            //{
+            //    discount = (double)(price / 10) / 2;
+            //    answer = price - (int)Math.Ceiling(discount);
+            //}
+            //else if (price >= 300000 && price < 500000)
+            //{
+            //    discount = (double)(price / 10);
+            //    answer = price - (int)Math.Ceiling(discount);
+            //}
+            //else if (price >= 500000)
+            //{
+            //    discount = (double)(price / 10) * 2;
+            //    answer = price - (int)Math.Ceiling(discount);
+            //}
+            //Console.WriteLine(answer);
+
+            //string my_string = "abcdef";
+            //string my_string = "BCBdbe";
+            //string letter = "f";
+            //string letter = "B";
+
+            //string answer = my_string.Replace(letter,"");
+
+            //Console.WriteLine(answer);
+
+            //int money = 15000;
+            //int var = money / 5500; // 구매 수
+            //int change = money % 5500; // 잔돈
+
+            //int[] answer = new int[2];
+            //answer[0] = var;
+            //answer[1] = change;
+
+            //foreach (int i in answer) 
+            //{
+            //    Console.WriteLine(i);
+            //}
+
+            //장군 개미 공격력 : 5
+            //병정 개미 공격력 : 3
+            //일개미 공격력 : 1
+            //int hp = 999;
+
+            //int att1 = hp / 5; 
+            //int att2 = (hp % 5) / 3;
+            //int att3 = (hp - (att1 * 5) - (att2*3)) / 1;
+            //int answer = att1 + att2 + att3;
+            //Console.WriteLine(answer);
+
+
         }
+        
+      
     }
 }
