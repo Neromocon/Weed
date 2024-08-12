@@ -9,50 +9,45 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _RM
+namespace LMS
 {
-    public partial class frmLogin : Form
+    public partial class frmLogin : Sample
     {
         public frmLogin()
         {
             InitializeComponent();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            // 데이터 베이스를 만들고 유저 테이블을 만들어 사용.
-
-            if (MainClass.IsVaildUser(txtUser.Text, txtPass.Text) == false)
+            if(txtemail.Text == "" || txtpass.Text == "")
             {
-                guna2MessageDialog1.Show("아이디와 비밀번호를 다시 한 번 확인해 주세요.");
+                MessageBox.Show("이메일과 비밀번호를 입력해주세요.");
                 return;
+            }
+
+            if(MainClass.UserDetails(txtemail.Text, txtpass.Text) == true)
+            {
+                frmMain frm = new frmMain();
+                frm.Show();
+                this.Hide();
             }
             else
             {
-                this.Hide();
-                frmMain frm = new frmMain();
-                frm.Show();
+                MessageBox.Show("이메일과 비밀번호를 확인해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            // 유저 정보를 먼저 입력.
-
+            
+            
         }
 
-
-        // PW의 textbox에 포커스가 있을 때, enter를 입력하면 btnLogin버튼이 클릭됨.
-        private void txtPass_KeyDown(object sender, KeyEventArgs e)
+        private void txtemail_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 //btnLogin_Click(sender, e);
-                if (MainClass.IsVaildUser(txtUser.Text, txtPass.Text) == false)
+                if (MainClass.UserDetails(txtemail.Text, txtpass.Text) == false)
                 {
-                    guna2MessageDialog1.Show("아이디와 비밀번호를 다시 한 번 확인해 주세요.");
+                    guna2MessageDialog1.Show("이메일과 비밀번호를 다시 한 번 확인해 주세요.");
                     return;
                 }
                 else
@@ -62,9 +57,30 @@ namespace _RM
                     frm.Show();
                 }
             }
-
-
         }
 
+        private void txtpass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //btnLogin_Click(sender, e);
+                if (MainClass.UserDetails(txtemail.Text, txtpass.Text) == false)
+                {
+                    guna2MessageDialog1.Show("이메일과 비밀번호를 다시 한 번 확인해 주세요.");
+                    return;
+                }
+                else
+                {
+                    this.Hide();
+                    frmMain frm = new frmMain();
+                    frm.Show();
+                }
+            }
+        }
+
+        private void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

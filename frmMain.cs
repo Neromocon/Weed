@@ -1,5 +1,4 @@
-﻿using _RM.Model;
-using _RM.View;
+﻿using LMS.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,93 +9,80 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _RM
+namespace LMS
 {
-    public partial class frmMain : Form
+    public partial class frmMain : Sample
     {
         public frmMain()
         {
             InitializeComponent();
         }
 
-
-        
-
-        static frmMain _obj;
-
-        public static frmMain Instance
-        {
-            get 
-            {
-                if (_obj == null)
-                {
-                    _obj = new frmMain();
-                }
-                return _obj;
-            }
-        }
-
-        // 메인폼 컨트롤 메소드를 추가함
-        public void AddControls(Form f)
-        {
-            ControlsPanel.Controls.Clear();
-            f.Dock = DockStyle.Fill;
-            f.TopLevel = false;
-            ControlsPanel.Controls.Add(f);
-            f.Show();
-        }
-
-
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            btnMax.PerformClick();
+
+            //사용자가 관리자인지 확인
+
+            if(MainClass.ROLE.ToLower() != "admin")
+            {
+                btnDep.Visible = false;
+                btnType.Visible = false;
+                btnEmployee.Visible = false;
+                //다른 사용자가 부서 또는 유형 또는 새 직원을 추가할 수 없게 함
+            }
+
+            txtPic.Image = MainClass.IMG;
             lblUser.Text = MainClass.USER;
-            _obj = this;
+            lblJob.Text = MainClass.JOB;
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
+        private void AddControl(Form F)
         {
-            AddControls(new frmHome());
+            CenterPanel.Controls.Clear();
+            F.TopLevel = false;
+            F.Dock = DockStyle.Fill;
+            CenterPanel.Controls.Add(F);
+            F.Show();
         }
 
-        private void btnCategory_Click(object sender, EventArgs e)
+        private void btnDashboard_Click(object sender, EventArgs e)
         {
-            AddControls(new frmCategoryView());
+            AddControl(new frmDashboard());            
         }
 
-        private void btnTable_Click(object sender, EventArgs e)
+        private void btnType_Click(object sender, EventArgs e)
         {
-            AddControls(new frmTableView());
+            AddControl(new frmTypeView());
         }
 
-        private void btnStaff_Click(object sender, EventArgs e)
+        private void btnDep_Click(object sender, EventArgs e)
         {
-            AddControls(new frmStaffView());
+            AddControl(new frmDepView());
         }
 
-        private void btnProduct_Click(object sender, EventArgs e)
+        private void btnEmployee_Click(object sender, EventArgs e)
         {
-            AddControls(new frmProductView());
+            AddControl(new frmEmployeeView());
         }
 
-        private void btnPOS_Click(object sender, EventArgs e)
+        private void btnRequest_Click(object sender, EventArgs e)
         {
-            frmPOS frm = new frmPOS();
-            frm.Show();
-        }
-
-        private void btnKitchen_Click(object sender, EventArgs e)
-        {
-            AddControls(new frmKitchenView());
-        }
-
-        private void btnReports_Click(object sender, EventArgs e)
-        {
-            AddControls(new frmReports());
+            //직원과 관리자에 대한 두 가지로 나눠 사용
+            if (MainClass.ROLE.ToLower() == "admin")
+            {
+                AddControl(new frmReqViewAdmin());
+            }
+            else 
+            {
+                AddControl(new frmRequestView());
+            }
+            
         }
     }
 }
