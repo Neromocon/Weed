@@ -91,7 +91,7 @@ namespace ConveyCs
 
             if (oldStepConv != stepConv)
             {
-                Console.WriteLine("Conveyor 2 Step = {0}", stepConv);
+                Console.WriteLine("Conveyor 1 Step = {0}", stepConv);
             }
             oldStepConv = stepConv;
             blsTakeIn = false;

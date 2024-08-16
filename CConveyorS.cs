@@ -137,7 +137,6 @@ namespace ConveyCs
                         }
                         break;
                     case 310:
-
                         ConvPio2.TrReq = true;
                         if (ConvPio2.UReq && ConvPio2.Ready)
                         {
@@ -178,7 +177,6 @@ namespace ConveyCs
                         }
                         break;
                     case 410:
-
                         ConvPio3.TrReq = true;
                         if (ConvPio3.UReq && ConvPio3.Ready)
                         {
@@ -221,7 +219,6 @@ namespace ConveyCs
                         }
                         break;
                     case 510:
-
                         ConvPio4.TrReq = true;
                         if (ConvPio4.UReq && ConvPio4.Ready)
                         {
@@ -229,7 +226,6 @@ namespace ConveyCs
                         }
                         break;
                     case 520:
-
                         statusCwConv = true;
                         ConvPio4.Busy = true;
                         if (ConvPio4.Ready && blsSensorDetect2)
@@ -295,10 +291,7 @@ namespace ConveyCs
                             //known id take out
                             //id가 0이면 이상한 것으로 간주 하고 1번 컨베이어로 반출함
                         }
-                        if(ConvPio1.LReq) stepConv = 700;
-                        else if (ConvPio2.LReq) stepConv = 800;
-                        else if (ConvPio3.LReq) stepConv = 900;
-                        else if (ConvPio4.LReq) stepConv = 1000;
+                        
                         break;
                     case 700:
                         if(ConvPio1.LReq)
@@ -375,7 +368,7 @@ namespace ConveyCs
                         {
                             MovePosition(SERVO_POS.CONY3);
                             if (GetPosition() == SERVO_POS.CONY3)
-                                stepConv = 910;
+                                stepConv = 810;
                         }
                         break;
                     case 910:

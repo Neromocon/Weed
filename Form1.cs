@@ -75,7 +75,20 @@ namespace ConveyCs
 
         private void btnTakeOut_Click(object sender, EventArgs e)
         {
-
+            if (selectedConv == CONV_TYPE.CONV3)
+            {
+                if (conveyor3.carrier.id != 0)
+                {
+                    conveyor3.carrier.use = CCarrier.USE.USE_TAKEOUT;
+                }
+            }
+            if (selectedConv == CONV_TYPE.CONV4)
+            {
+                if (conveyor4.carrier.id != 0)
+                {
+                    conveyor4.carrier.use = CCarrier.USE.USE_TAKEOUT;
+                }
+            }
         }
 
         private void btnAuto_Click(object sender, EventArgs e)
@@ -281,33 +294,33 @@ namespace ConveyCs
             {
                 case CConveyorS.SERVO_POS.CONY_NONE:
                     btnConveyorS.Location = new System.Drawing.Point(230, 160);
-                    cbSensorS_1.Location = new System.Drawing.Point(170, 160);
-                    cbSensorS_2.Location = new System.Drawing.Point(170, 240);
+                    cbSensorS_2.Location = new System.Drawing.Point(170, 160);
+                    cbSensorS_1.Location = new System.Drawing.Point(170, 240);
                     break;
                 case CConveyorS.SERVO_POS.CONY1:
                     btnConveyorS.Location = new System.Drawing.Point(100, 160);
-                    cbSensorS_1.Location = new System.Drawing.Point(40, 160);
-                    cbSensorS_2.Location = new System.Drawing.Point(40, 240);
+                    cbSensorS_2.Location = new System.Drawing.Point(40, 160);
+                    cbSensorS_1.Location = new System.Drawing.Point(40, 240);
                     break;
                 case CConveyorS.SERVO_POS.CONY2:
                     btnConveyorS.Location = new System.Drawing.Point(360, 160);
-                    cbSensorS_1.Location = new System.Drawing.Point(300, 160);
-                    cbSensorS_2.Location = new System.Drawing.Point(300, 240);
+                    cbSensorS_2.Location = new System.Drawing.Point(300, 160);
+                    cbSensorS_1.Location = new System.Drawing.Point(300, 240);
                     break;
                 case CConveyorS.SERVO_POS.CONY3:
                     btnConveyorS.Location = new System.Drawing.Point(100, 160);
-                    cbSensorS_1.Location = new System.Drawing.Point(40, 160);
-                    cbSensorS_2.Location = new System.Drawing.Point(40, 240);
+                    cbSensorS_2.Location = new System.Drawing.Point(40, 160);
+                    cbSensorS_1.Location = new System.Drawing.Point(40, 240);
                     break;
                 case CConveyorS.SERVO_POS.CONY4:
                     btnConveyorS.Location = new System.Drawing.Point(360, 160);
-                    cbSensorS_1.Location = new System.Drawing.Point(300, 160);
-                    cbSensorS_2.Location = new System.Drawing.Point(300, 240);
+                    cbSensorS_2.Location = new System.Drawing.Point(300, 160);
+                    cbSensorS_1.Location = new System.Drawing.Point(300, 240);
                     break;
                 default:
                     btnConveyorS.Location = new System.Drawing.Point(230, 160);
-                    cbSensorS_1.Location = new System.Drawing.Point(170, 160);
-                    cbSensorS_2.Location = new System.Drawing.Point(170, 240);
+                    cbSensorS_2.Location = new System.Drawing.Point(170, 160);
+                    cbSensorS_1.Location = new System.Drawing.Point(170, 240);
                     break;
             }
             conveyorS.CurrentPosition = conveyorS.TargetPosition;
@@ -414,107 +427,59 @@ namespace ConveyCs
                 conveyorS.sensor2 = false;
         }
 
-        //void ProcConv1()
-        //{
+        private enum CONV_TYPE
+        {
+            CONV_NONE,
+            CONV1,
+            CONV2,
+            CONV3,
+            CONV4,
+            CONVS
+        }
 
-        //}
-        //void ProcConv2()
-        //{
-        //    if(blsAutoConv2 == true)
-        //    {
-        //        switch(stepConv2)
-        //        {
-        //            case 0:
-        //                pioConv1.blsUReq = false;
-        //                pioConv1.blsLReq = false;
-        //                pioConv1.blsReady = false;
-        //                statusCwConv2 = false;
-        //                statusCcwConv2 = false;
+        private CONV_TYPE selectedConv;
 
-        //                stepConv2 = 100;
-        //                break;
-        //            case 100:
-        //                if(cbSensor2_2.Checked == true)
-        //                {
-        //                    stepConv2 = 200;
-        //                }
-        //                else
-        //                {
-        //                    if(blsTakeIn == true)
-        //                    {
-        //                        stepConv2 = 110;
-        //                        countConv2 = 0;
-        //                    }
-        //                }
-        //                break;
-        //            case 110:
-        //                statusCcwConv2 = true;
-        //                if(cbSensor2_2.Checked == true)
-        //                {
-        //                    statusCcwConv2 = false;
-        //                    pioConv2.blsUReq = true;
-        //                    stepConv2 = 200;
-        //                }
-        //                break;
-        //            case 200:
-        //                if(cbSensor2_2.Checked == false)
-        //                {
-        //                    stepConv2 = 100;
-        //                }
-        //                else if (pioConv2.blsTrReq)
-        //                {
-        //                    stepConv2 = 210;
-        //                    pioConv2.blsReady = true;
-        //                }
-        //                break;
-        //            case 210:
-        //                if (pioConv2.blsBusy)
-        //                {
-        //                    pioConv2.blsUReq = true;
-        //                    stepConv2 = 220;
-        //                }
-        //                break;
-        //            case 220:
-        //                statusCcwConv2 = true;
-        //                if (!pioConv2.blsTrReq && !pioConv2.blsBusy && pioConv2.blsCompt)
-        //                {
-        //                    pioConv2.blsUReq = false;
-        //                    statusCcwConv2 = false;
-        //                    stepConv2 = 230;
-        //                }
-        //                break;
-        //            case 230:
-        //                if (!pioConv2.blsCompt)
-        //                    stepConv2 = 100;
-        //                break;
-        //            default:
-        //                stepConv2 = 0;
-        //                break;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        stepConv2 = 0;
-        //    }
+        private void SelectConv(CONV_TYPE select)
+        {
+            btnConveyor1.BackColor = System.Drawing.Color.RoyalBlue;
+            btnConveyor2.BackColor = System.Drawing.Color.RoyalBlue;
+            btnConveyor3.BackColor = System.Drawing.Color.RoyalBlue;
+            btnConveyor4.BackColor = System.Drawing.Color.RoyalBlue;
+            btnConveyorS.BackColor = System.Drawing.Color.RoyalBlue;
+            if (select == CONV_TYPE.CONV1) btnConveyor1.BackColor = System.Drawing.Color.Azure;
+            if (select == CONV_TYPE.CONV2) btnConveyor2.BackColor = System.Drawing.Color.Azure;
+            if (select == CONV_TYPE.CONV3) btnConveyor3.BackColor = System.Drawing.Color.Azure;
+            if (select == CONV_TYPE.CONV4) btnConveyor4.BackColor = System.Drawing.Color.Azure;
+            if (select == CONV_TYPE.CONVS) btnConveyorS.BackColor = System.Drawing.Color.Azure;
+        }
 
-        //    if (oldStepConv2 != stepConv2)
-        //    {
-        //        Console.WriteLine("Conveyor 2 Step = {0}", stepConv2);
-        //    }
-        //    oldStepConv2 = stepConv2;
-        //    blsTakeIn = false;
-        //}
-        //void ProcConv3()
-        //{
+        private void btnConveyor1_Click(object sender, EventArgs e)
+        {
+            selectedConv = CONV_TYPE.CONV1;
+            SelectConv(selectedConv);
+        }
 
-        //}
-        //void ProcConv4()
-        //{
+        private void btnConveyor2_Click(object sender, EventArgs e)
+        {
+            selectedConv = CONV_TYPE.CONV2;
+            SelectConv(selectedConv);
+        }
 
-        //}
-        //void ProcConvS()
-        //{
+        private void btnConveyor3_Click(object sender, EventArgs e)
+        {
+            selectedConv = CONV_TYPE.CONV3;
+            SelectConv(selectedConv);
+        }
 
-        //}
+        private void btnConveyor4_Click(object sender, EventArgs e)
+        {
+            selectedConv = CONV_TYPE.CONV4;
+            SelectConv(selectedConv);
+        }
+
+        private void btnConveyorS_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

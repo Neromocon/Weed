@@ -31,10 +31,10 @@ namespace ConveyCs
                         //Load_request는 100번 스텝에서 켜고 120번 스텝으로 넘어가기 전에 끔
                         //Ready는 100번에서 넘어갈 때 켜고 140번 스텝으로 넘어갈 때 끔.
                         //모터는 110번 스텝 넘어가기 전에 켜서 130번 스텝 넘어가기 전에 끔
-                        //blsLReq = true;
+                        blsLReq = true;
                         if (blsTrReq)
                         {
-                            statusCwConv = true;
+                            statusCcwConv = true;
                             blsReady = true;
                             stepConv = 110;
                         }
@@ -51,7 +51,7 @@ namespace ConveyCs
                     case 120:
                         if (blsSensorDetect2)
                         {
-                            statusCwConv = false;
+                            statusCcwConv = false;
                             stepConv = 130;
                         }
                         //센서가 감지되면 130번 스텝으로.
@@ -71,9 +71,18 @@ namespace ConveyCs
                         }
                         break;
                     case 200:
+                        if(carrier.use == CCarrier.USE.USE_TAKEOUT)
+                        {
+                            blsUReq = true;
+                        }
                         if (blsSensorDetect2 == true)
                         {
                             stepConv = 100;
+                        }
+                        else if(blsTrReq)
+                        {
+                            stepConv = 210;
+                            blsReady = true;
                         }
                         break;
                     case 210:
