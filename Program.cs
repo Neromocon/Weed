@@ -1,22 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace ConveyCs
+namespace ConsoleApp12
 {
-    internal static class Program
+    internal class Program
     {
-        /// <summary>
-        /// 해당 애플리케이션의 주 진입점입니다.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            string[] intStrs = { "0123456789", "9876543210", "9999999999999" };
+            int k = 50000;
+            int s = 5;
+            int l = 5;
+            List<int> list = new List<int>();
+            for(int i = 0; i < intStrs.Length; i++)
+            {
+                string part = intStrs[i].Substring(s, l);
+
+                int num = int.Parse(part);
+
+                if (num > k)
+                {
+                    list.Add(num);
+                }
+            }
+            int[] answer = list.ToArray();
+            foreach (int value in answer)
+            {
+                Console.WriteLine(value);
+            }
         }
     }
 }
